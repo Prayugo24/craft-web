@@ -4,16 +4,16 @@ var menu_button = menu_parent.children[0];
 var menu_popup = menu_parent.children[menu_parent.children.length - 2];
 menu_popup.className += " mobile_menu";
 var menu_popup_ori_class = menu_popup.className;
-menu_button.onmousedown = function () {
-	menu_toggle();
-}
+// menu_button.onmousedown = function () {
+// 	menu_toggle();
+// }
 
 function menu_toggle() {
 	if (menu_popup.className.indexOf("opened") >= 0) {
-		menu_popup.className = menu_popup_ori_class + " opened";
-		alert("ok no");
+		menu_popup.className = menu_popup_ori_class;
+		console.log('test 0');
 	} else {
-		alert("ok");
+		console.log('test 1');
 		menu_popup.className = menu_popup_ori_class + " opened";
 	}
 }
