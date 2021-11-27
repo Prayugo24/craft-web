@@ -6,7 +6,7 @@ class ProductController extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('categorymodels');
+		$this->load->model('CategoryModels');
 		$this->load->model('productmodels');
 		$this->load->helper('form');
 		
@@ -14,7 +14,7 @@ class ProductController extends CI_Controller {
 	public function index()
 	{	
 		$params['menu']="product";
-		$params['category']=$this->categorymodels->getAll();	
+		$params['category']=$this->CategoryModels->getAll();	
 		$params['product'] = $this->productmodels->getProductInnerJoinByIdCategory($params['category'][0]->id) ? $this->productmodels->getProductInnerJoinByIdCategory($params['category'][0]->id) : [];
 		$this->load->view('template_2/nav/header',$params);
 		$this->load->view('template_2/product',$params);

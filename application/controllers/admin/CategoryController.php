@@ -7,7 +7,7 @@ class CategoryController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('productmodels');
-		$this->load->model('categorymodels');
+		$this->load->model('CategoryModels');
 		$this->load->model('suppliermodels');
 		$this->load->model('imagemodels');
 		$this->load->library('form_validation');
@@ -20,7 +20,7 @@ class CategoryController extends CI_Controller {
 	public function index()
 	{
 		$params['active_category']='mm-active';
-		$params['category']=$this->categorymodels->getAll();		
+		$params['category']=$this->CategoryModels->getAll();		
 		
 		$this->load->view('admin/nav/header',$params);
 		$this->load->view('admin/dashboard_category',$params);
@@ -53,7 +53,7 @@ class CategoryController extends CI_Controller {
 						'image_category' => $uploaded_data['file_name'],
 					];
 					
-					$category = $this->categorymodels;
+					$category = $this->CategoryModels;
 					$validation = $this->form_validation;
 					$validation = $validation->set_rules($category->rules());
 					if ($validation->run()) {
@@ -80,7 +80,7 @@ class CategoryController extends CI_Controller {
 		$config['overwrite']            = true;
 		
 		$this->load->library('upload', $config);
-		$get_category = $this->categorymodels->getById($post['id_category']);
+		$get_category = $this->CategoryModels->getById($post['id_category']);
 		
 		if (!$this->upload->do_upload('image_category')) {
 			$image_category = $get_category->image_category;
@@ -91,7 +91,7 @@ class CategoryController extends CI_Controller {
 			$image_category = $uploaded_data['file_name'];
 		}
 		
-		$category = $this->categorymodels;
+		$category = $this->CategoryModels;
 		$validation = $this->form_validation;
 		$validation = $validation->set_rules($category->rules());
 		if ($validation->run()) {
@@ -116,17 +116,17 @@ class CategoryController extends CI_Controller {
 	{
 		if (!isset($id)) show_404();
 		$path_to_file =FCPATH.'/assets/img/category/';
-		$get_category = $this->categorymodels->getById($id);
+		$get_category = $this->CategoryModels->getById($id);
 		
 		
 		if (!empty($get_category)) {
 			if($get_category->image_category != null){
 				unlink($path_to_file.$get_category->image_category);
-				$this->categorymodels->delete($id);
+				$this->CategoryModels->delete($id);
 				$this->session->set_flashdata('delete', 'Berhasil Di Hapus');
 				redirect('dashboard-category');
 			}else{
-				$this->categorymodels->delete($id);
+				$this->CategoryModels->delete($id);
 				$this->session->set_flashdata('delete', 'Berhasil Di Hapus');
 				redirect('dashboard-category');
 			}
@@ -139,7 +139,7 @@ class CategoryController extends CI_Controller {
 	public function get_category_by_id($id=null)
 	{
 		if (!isset($id)) show_404();
-		$get_category = $this->categorymodels->getById($id);
+		$get_category = $this->CategoryModels->getById($id);
 		echo json_encode($get_category);
 	}
 }
