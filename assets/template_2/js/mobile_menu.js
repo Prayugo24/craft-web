@@ -13,7 +13,7 @@ function menu_toggle() {
 		menu_popup.className = menu_popup_ori_class;
 		alert("ok no");
 	} else {
-		alert("ok no");
+		alert("ok");
 		menu_popup.className = menu_popup_ori_class + " opened";
 	}
 }
