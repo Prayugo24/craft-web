@@ -11,7 +11,9 @@ menu_button.onmousedown = function () {
 function menu_toggle() {
 	if (menu_popup.className.indexOf("opened") >= 0) {
 		menu_popup.className = menu_popup_ori_class;
+		alert("ok no");
 	} else {
+		alert("ok");
 		menu_popup.className = menu_popup_ori_class + " opened";
 	}
 }
