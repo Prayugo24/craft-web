@@ -72,7 +72,7 @@
 							<!-- <a class='style_3591_83 data_598_1 link text-small-dark'
 								href='https://www.instagram.com/GoocraftIndonesia/' target='_blank'>GoocraftIndonesia</a> -->
 							<a class='style_3591_83 data_598_2 link text-small-dark '
-								href='tel:+62812-1786-438'>+6289-5161-42887</a>
+								href='tel:+6289-5161-42887'>+6289-5161-42887</a>
 							<meta itemprop='name' content='Contact Information' />
 						</div>
 					</div>

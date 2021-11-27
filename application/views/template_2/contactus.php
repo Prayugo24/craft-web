@@ -29,7 +29,7 @@
 		<div class='data_2494_1011 text title-transition'>Location</div>
 		<div class='style_2494_51 data_2494_1014 text text-normal'><span itemprop='description'>
 		Yogyakarta, Kab Bantul, Indonesia</span></div><a
-			class='style_2494_51 data_2494_1047 link text-normal' href='tel:+62812-1786-438'
+			class='style_2494_51 data_2494_1047 link text-normal' href='tel:+6289-5161-42887'
 			target='_blank'>+6289-5161-42887</a>
 		
 		<meta itemprop='name' content='Contact Information' />
