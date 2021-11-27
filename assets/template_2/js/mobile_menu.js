@@ -5,7 +5,6 @@ var menu_popup = menu_parent.children[menu_parent.children.length - 2];
 menu_popup.className += " mobile_menu";
 var menu_popup_ori_class = menu_popup.className;
 menu_button.onmousedown = function () {
-	
 	menu_toggle();
 }
 

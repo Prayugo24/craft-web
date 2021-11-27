@@ -106,7 +106,7 @@
 					<nav class='lay_2494b_295   data_3591_954'>
 						<div class='data_2494b_853 html'>
 
-							<a id="nav-toggle" href="#nav-toggle" onclick="menu_toggle()">
+							<a id="nav-toggle" onclick="menu_toggle()">
 								<span></span>
 							</a>
 						</div>
