@@ -6,11 +6,11 @@ class InvoiceController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('invoiceModels');
+		$this->load->model('InvoiceModels');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
-		$this->load->model('authmodels');
-		if(!$this->authmodels->current_user()){
+		$this->load->model('AuthModels');
+		if(!$this->AuthModels->current_user()){
 			redirect('super-power');
 		}
 	}
@@ -38,7 +38,7 @@ class InvoiceController extends CI_Controller {
 			$params_buyer['zip_code'] = $post['zip_code'];
 			$params_buyer['address'] = 	$post['address'];
 			
-			$Invoice = $this->invoiceModels;
+			$Invoice = $this->InvoiceModels;
 			$validation = $this->form_validation;
 			$validation = $validation->set_rules($Invoice->rulesBuyer());
 
@@ -130,7 +130,7 @@ class InvoiceController extends CI_Controller {
 			$params_buyer['city'] = $post['city'];
 			$params_buyer['zip_code'] = $post['zip_code'];
 			$params_buyer['address'] = 	$post['address'];
-			$Invoice = $this->invoiceModels;
+			$Invoice = $this->InvoiceModels;
 			$validation = $this->form_validation;
 			$validation = $validation->set_rules($Invoice->rulesBuyer());
 			if ($validation->run()) {
@@ -146,7 +146,7 @@ class InvoiceController extends CI_Controller {
 		$config['overwrite']            = true;
 		
 		$this->load->library('upload', $config);
-		$productJoin = $this->invoiceModels->getProductInnerJoinById($post['id_product']);
+		$productJoin = $this->InvoiceModels->getProductInnerJoinById($post['id_product']);
 		$productJoin = json_encode($productJoin[0]);
 		$productJoin = json_decode($productJoin,true);
 		if (!$this->upload->do_upload('image_product')) {
@@ -158,7 +158,7 @@ class InvoiceController extends CI_Controller {
 			$name_image = $uploaded_data['file_name'];
 		}
 		
-		$product = $this->invoiceModels;
+		$product = $this->InvoiceModels;
 		$validation = $this->form_validation;
 		$validation = $validation->set_rules($product->rules());
 		if ($validation->run()) {
@@ -201,18 +201,18 @@ class InvoiceController extends CI_Controller {
 	{
 		if (!isset($id)) show_404();
 		$path_to_file =FCPATH.'/assets/img/order/';
-		$invoiceJoin = $this->invoiceModels->getInvoiceInnerJoinOrderbyBuyer($id);
+		$invoiceJoin = $this->InvoiceModels->getInvoiceInnerJoinOrderbyBuyer($id);
 		$invoiceJoin = json_encode($invoiceJoin[0]);
 		$invoiceJoin = json_decode($invoiceJoin,true);
 		if (!empty($invoiceJoin)) {
-			$order = $this->invoiceModels->getOrderByBuyer($invoiceJoin['id_buyer']);
+			$order = $this->InvoiceModels->getOrderByBuyer($invoiceJoin['id_buyer']);
 			foreach ($order as $key => $value) {
 				if(unlink($path_to_file.$value->image)) {
-					$this->invoiceModels->deleteOrder($value->id_order);
+					$this->InvoiceModels->deleteOrder($value->id_order);
 				}
 			}
-			$this->invoiceModels->deleteBuyer($invoiceJoin['id_buyer']);
-			$this->invoiceModels->deleteShipment($invoiceJoin['id_shipment']);
+			$this->InvoiceModels->deleteBuyer($invoiceJoin['id_buyer']);
+			$this->InvoiceModels->deleteShipment($invoiceJoin['id_shipment']);
 			$this->session->set_flashdata('delete', 'Berhasil Di Hapus');
 			redirect('dashboard-invoice');
 		}else {
@@ -236,9 +236,9 @@ class InvoiceController extends CI_Controller {
 		'order_field' => $order_field,
 		'order_ascdesc' => $order_ascdesc
 	];
-	$sql_total = $this->invoiceModels->count_all(); // Panggil fungsi count_all pada SiswaModel
-    $sql_data = $this->invoiceModels->getInvoiceInnerJoin($params); // Panggil fungsi filter pada SiswaModel
-    $sql_filter = $this->invoiceModels->count_filter(); // Panggil fungsi count_filter pada SiswaModel
+	$sql_total = $this->InvoiceModels->count_all(); // Panggil fungsi count_all pada SiswaModel
+    $sql_data = $this->InvoiceModels->getInvoiceInnerJoin($params); // Panggil fungsi filter pada SiswaModel
+    $sql_filter = $this->InvoiceModels->count_filter(); // Panggil fungsi count_filter pada SiswaModel
     $callback = array(
         'draw'=>$_POST['draw'], // Ini dari datatablenya
         'recordsTotal'=>$sql_total,
@@ -252,8 +252,8 @@ class InvoiceController extends CI_Controller {
 	public function get_invoice_by_id($id=null)
 	{
 		if (!isset($id)) show_404();
-		$invoiceJoin = $this->invoiceModels->getInvoiceInnerJoinOrderbyBuyer($id);
-		$getOrderByIdBuyer = $this->invoiceModels->getOrderByBuyer($id);
+		$invoiceJoin = $this->InvoiceModels->getInvoiceInnerJoinOrderbyBuyer($id);
+		$getOrderByIdBuyer = $this->InvoiceModels->getOrderByBuyer($id);
 		$invoiceJoin = json_encode($invoiceJoin[0]);
 		$result = [
 			'Shipment' => json_decode($invoiceJoin,true),

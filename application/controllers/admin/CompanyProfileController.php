@@ -6,18 +6,18 @@ class CompanyProfileController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('authmodels');
+		$this->load->model('AuthModels');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
-		$this->load->model('companyprofilmodels');
-		if(!$this->authmodels->current_user()){
+		$this->load->model('CompanyProfilModels');
+		if(!$this->AuthModels->current_user()){
 			redirect('super-power');
 		}
 	}
 	public function index()
 	{
 		$params['active_profile']='mm-active';
-		$params['profile']= $this->companyprofilmodels->getFirstRow();
+		$params['profile']= $this->CompanyProfilModels->getFirstRow();
 		
 		$this->load->view('admin/nav/header',$params);
 		$this->load->view('admin/company_profile',$params);
@@ -28,7 +28,7 @@ class CompanyProfileController extends CI_Controller {
 		if ($this->input->method() === 'post') {
 			// the user id contain dot, so we must remove it
 			$post = $this->input->post();
-			$profile = $this->companyprofilmodels->getFirstRow();
+			$profile = $this->CompanyProfilModels->getFirstRow();
 			
 			if(empty($profile)){
 				$file_name =  $post['name_company'];
@@ -58,7 +58,7 @@ class CompanyProfileController extends CI_Controller {
 						'image_company' => $uploaded_data['file_name'],
 					];
 					
-					$company_profil = $this->companyprofilmodels;
+					$company_profil = $this->CompanyProfilModels;
 					$validation = $this->form_validation;
 					$validation->set_rules($company_profil->rules());
 					if($validation->run()){
@@ -107,7 +107,7 @@ class CompanyProfileController extends CI_Controller {
 				'image_company' => $uploaded_data['file_name'],
 			];
 			
-			$company_profil = $this->companyprofilmodels;
+			$company_profil = $this->CompanyProfilModels;
 			$validation = $this->form_validation;
 			$validation->set_rules($company_profil->rules());
 			if($validation->run()){
@@ -122,10 +122,10 @@ class CompanyProfileController extends CI_Controller {
 	{
 		if (!isset($id)) show_404();
 		$path_to_file =FCPATH.'/assets/img/profile';
-		$profile = $this->companyprofilmodels->getFirstRow();
+		$profile = $this->CompanyProfilModels->getFirstRow();
 		if (!empty($profile)) {
 			if(unlink($path_to_file.$profile->image_company)) {
-				$this->companyprofilmodels->delete($id);
+				$this->CompanyProfilModels->delete($id);
 				$this->session->set_flashdata('delete', 'Berhasil Di Hapus');
 				redirect('dashboard-profile');
 			}

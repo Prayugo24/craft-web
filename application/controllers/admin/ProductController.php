@@ -6,25 +6,25 @@ class ProductController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('productmodels');
-		$this->load->model('categorymodels');
-		$this->load->model('suppliermodels');
-		$this->load->model('imagemodels');
+		$this->load->model('ProductModels');
+		$this->load->model('CategoryModels');
+		$this->load->model('SupplierModels');
+		$this->load->model('ImageModels');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
-		$this->load->model('authmodels');
-		if(!$this->authmodels->current_user()){
+		$this->load->model('AuthModels');
+		if(!$this->AuthModels->current_user()){
 			redirect('super-power');
 		}
 	}
 	public function index()
 	{
 		$params['active_product']='mm-active';
-		$params['product']=$this->productmodels->getProductInnerJoin();
+		$params['product']=$this->ProductModels->getProductInnerJoin();
 		
-		$params['category']=$this->categorymodels->getAll();
+		$params['category']=$this->CategoryModels->getAll();
 		
-		$params['suppliers']=$this->suppliermodels->getAll();
+		$params['suppliers']=$this->SupplierModels->getAll();
 		
 		$this->load->view('admin/nav/header',$params);
 		$this->load->view('admin/dashboard_product',$params);
@@ -66,7 +66,7 @@ class ProductController extends CI_Controller {
 						
 					];
 					
-					$product = $this->productmodels;
+					$product = $this->ProductModels;
 					$validation = $this->form_validation;
 					$validation = $validation->set_rules($product->rules());
 					if ($validation->run()) {
@@ -75,7 +75,7 @@ class ProductController extends CI_Controller {
 							'id_product' => $id_product,
 							'name_image' => $uploaded_data['file_name'],
 						];
-						$image = $this->imagemodels;
+						$image = $this->ImageModels;
 						$save_image = $image->save($params_image);
 						
 						$this->session->set_flashdata('success', 'Berhasil disimpan');
@@ -103,7 +103,7 @@ class ProductController extends CI_Controller {
 		$config['overwrite']            = true;
 		
 		$this->load->library('upload', $config);
-		$productJoin = $this->productmodels->getProductInnerJoinById($post['id_product']);
+		$productJoin = $this->ProductModels->getProductInnerJoinById($post['id_product']);
 		$productJoin = json_encode($productJoin[0]);
 		$productJoin = json_decode($productJoin,true);
 		if (!$this->upload->do_upload('image_product')) {
@@ -115,7 +115,7 @@ class ProductController extends CI_Controller {
 			$name_image = $uploaded_data['file_name'];
 		}
 		
-		$product = $this->productmodels;
+		$product = $this->ProductModels;
 		$validation = $this->form_validation;
 		$validation = $validation->set_rules($product->rules());
 		if ($validation->run()) {
@@ -142,7 +142,7 @@ class ProductController extends CI_Controller {
 				'name_image' => $name_image,
 			];
 			
-			$image = $this->imagemodels;
+			$image = $this->ImageModels;
 			$save_image = $image->update($params_image);
 			
 			$this->session->set_flashdata('success', 'Berhasil disimpan');
@@ -158,13 +158,13 @@ class ProductController extends CI_Controller {
 	{
 		if (!isset($id)) show_404();
 		$path_to_file =FCPATH.'/assets/img/product/';
-		$productJoin = $this->productmodels->getProductInnerJoinById($id);
+		$productJoin = $this->ProductModels->getProductInnerJoinById($id);
 		$productJoin = json_encode($productJoin[0]);
 		$productJoin = json_decode($productJoin,true);
 		
 		if (!empty($productJoin)) {
 			if(unlink($path_to_file.$productJoin['name_image'])) {
-				$this->productmodels->delete($id);
+				$this->ProductModels->delete($id);
 				$this->session->set_flashdata('delete', 'Berhasil Di Hapus');
 				redirect('dashboard-product');
 			}
@@ -192,9 +192,9 @@ class ProductController extends CI_Controller {
 		'order_field' => $order_field,
 		'order_ascdesc' => $order_ascdesc
 	];
-	$sql_total = $this->productmodels->count_all(); // Panggil fungsi count_all pada SiswaModel
-    $sql_data = $this->productmodels->getProductInnerJoinSearch($params); // Panggil fungsi filter pada SiswaModel
-    $sql_filter = $this->productmodels->count_filter(); // Panggil fungsi count_filter pada SiswaModel
+	$sql_total = $this->ProductModels->count_all(); // Panggil fungsi count_all pada SiswaModel
+    $sql_data = $this->ProductModels->getProductInnerJoinSearch($params); // Panggil fungsi filter pada SiswaModel
+    $sql_filter = $this->ProductModels->count_filter(); // Panggil fungsi count_filter pada SiswaModel
     $callback = array(
         'draw'=>$_POST['draw'], // Ini dari datatablenya
         'recordsTotal'=>$sql_total,
@@ -208,7 +208,7 @@ class ProductController extends CI_Controller {
 	public function get_product_by_id($id=null)
 	{
 		if (!isset($id)) show_404();
-		$product = $this->productmodels->getProductInnerJoinById($id);
+		$product = $this->ProductModels->getProductInnerJoinById($id);
 		echo json_encode($product);
 	}
 }

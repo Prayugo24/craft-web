@@ -6,13 +6,12 @@ class ProformaInvoiceController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('suppliermodels');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
-		$this->load->model('authmodels');
+		$this->load->model('AuthModels');
 		$this->load->library('pdfgenerator');
 		$this->load->library('html2pdf');
-		if(!$this->authmodels->current_user()){
+		if(!$this->AuthModels->current_user()){
 			redirect('super-power');
 		}
 	}

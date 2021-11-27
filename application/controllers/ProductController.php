@@ -7,7 +7,7 @@ class ProductController extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('CategoryModels');
-		$this->load->model('productmodels');
+		$this->load->model('ProductModels');
 		$this->load->helper('form');
 		
 	}
@@ -15,7 +15,7 @@ class ProductController extends CI_Controller {
 	{	
 		$params['menu']="product";
 		$params['category']=$this->CategoryModels->getAll();	
-		$params['product'] = $this->productmodels->getProductInnerJoinByIdCategory($params['category'][0]->id) ? $this->productmodels->getProductInnerJoinByIdCategory($params['category'][0]->id) : [];
+		$params['product'] = $this->ProductModels->getProductInnerJoinByIdCategory($params['category'][0]->id) ? $this->ProductModels->getProductInnerJoinByIdCategory($params['category'][0]->id) : [];
 		$this->load->view('template_2/nav/header',$params);
 		$this->load->view('template_2/product',$params);
 		$this->load->view('template_2/nav/footer');
@@ -23,7 +23,7 @@ class ProductController extends CI_Controller {
 
 	public function get_product_by_category($id){
 		if (!isset($id)) show_404();
-		$product = $this->productmodels->getProductInnerJoinByIdCategory($id);
+		$product = $this->ProductModels->getProductInnerJoinByIdCategory($id);
 		echo json_encode($product);
 	}
 

@@ -6,14 +6,11 @@ class CategoryController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('productmodels');
 		$this->load->model('CategoryModels');
-		$this->load->model('suppliermodels');
-		$this->load->model('imagemodels');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
-		$this->load->model('authmodels');
-		if(!$this->authmodels->current_user()){
+		$this->load->model('AuthModels');
+		if(!$this->AuthModels->current_user()){
 			redirect('super-power');
 		}
 	}

@@ -6,18 +6,18 @@ class SupplierController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('suppliermodels');
+		$this->load->model('SupplierModels');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
-		$this->load->model('authmodels');
-		if(!$this->authmodels->current_user()){
+		$this->load->model('AuthModels');
+		if(!$this->AuthModels->current_user()){
 			redirect('super-power');
 		}
 	}
 	public function index()
 	{
 		$params['active_supplier']='mm-active';
-		$params['supplier']=$this->suppliermodels->getAll();
+		$params['supplier']=$this->SupplierModels->getAll();
 		$this->load->view('admin/nav/header',$params);
 		$this->load->view('admin/dashboard_supplier',$params);
 		$this->load->view('admin/nav/footer');
@@ -26,7 +26,7 @@ class SupplierController extends CI_Controller {
 
 	public function add_supplier()
 	{
-		$supplier = $this->suppliermodels;
+		$supplier = $this->SupplierModels;
 		$validation = $this->form_validation;
 		$validation->set_rules($supplier->rules());
 		if ($validation->run()) {
@@ -42,7 +42,7 @@ class SupplierController extends CI_Controller {
 		
 		if (!isset($post['id'])) redirect('dashboard-supplier');
 
-		$supplier = $this->suppliermodels;
+		$supplier = $this->SupplierModels;
 		$validation = $this->form_validation;
 		$validation->set_rules($supplier->rules());
 		if($validation->run()){
@@ -57,7 +57,7 @@ class SupplierController extends CI_Controller {
 	{
 		if (!isset($id)) show_404();
 
-		if ($this->suppliermodels->delete($id)) {
+		if ($this->SupplierModels->delete($id)) {
 			$this->session->set_flashdata('delete', 'Berhasil Di Hapus');
 			redirect(site_url('dashboard-supplier'));
 		}
@@ -67,7 +67,7 @@ class SupplierController extends CI_Controller {
 	{
 		if (!isset($id)) show_404();
 		
-		$supplier = $this->suppliermodels->getById($id);
+		$supplier = $this->SupplierModels->getById($id);
 		echo json_encode($supplier);
 	}
 }

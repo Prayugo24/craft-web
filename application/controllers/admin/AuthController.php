@@ -7,7 +7,7 @@ class AuthController extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->helper('url');
-		$this->load->model('authmodels');
+		$this->load->model('AuthModels');
 		$this->load->library('form_validation');
 	}
 
@@ -18,7 +18,7 @@ class AuthController extends CI_Controller {
 
 	public function login()
 	{
-		$rules = $this->authmodels->rules();
+		$rules = $this->AuthModels->rules();
 		$this->form_validation->set_rules($rules);
 
 		if($this->form_validation->run() == FALSE){
@@ -28,7 +28,7 @@ class AuthController extends CI_Controller {
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		$password = md5($password);
-		$user = $this->authmodels->login($email, $password);
+		$user = $this->AuthModels->login($email, $password);
 		if($user){
 			redirect('dashboard');
 		} else {
@@ -38,7 +38,7 @@ class AuthController extends CI_Controller {
 
 	public function logout()
 	{
-		$this->authmodels->logout();
+		$this->AuthModels->logout();
 		redirect(site_url());
 	}
 }
