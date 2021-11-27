@@ -116,6 +116,8 @@
 								<a class='style_2494b_84 data_598_148 c_598_1 link' href='<?php echo base_url()."about"; ?>'>About Us</a>
 								<a class='style_2494b_84 data_598_149 c_3591_28 link' href='<?php echo base_url()."product"; ?>' >Product</a>
 								<a class='style_2494b_84 data_598_152 c_598_3 link' href='<?php echo base_url()."craftsmen"; ?>'>Craftsmen Activity</a>
+								<a class='style_2494b_84 data_598_152 c_598_3 link' href='<?php echo base_url()."faq"; ?>'>FAQ</a>
+								<a class='style_2494b_84 data_598_152 c_598_3 link' href='<?php echo base_url()."terms-and-conditions"; ?>'>Term &amp; Conditions</a>
 								<a class='style_2494b_84 data_598_154 link' href='<?php echo base_url()."contact-us"; ?>'>Contact Us</a>
 							</div>
 						</div>

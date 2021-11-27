@@ -11,9 +11,9 @@ var menu_popup_ori_class = menu_popup.className;
 function menu_toggle() {
 	if (menu_popup.className.indexOf("opened") >= 0) {
 		menu_popup.className = menu_popup_ori_class;
-		console.log('test 0');
+		// console.log('test 0');
 	} else {
-		console.log('test 1');
+		// console.log('test 1');
 		menu_popup.className = menu_popup_ori_class + " opened";
 	}
 }
