@@ -83,7 +83,7 @@
 						<a class='style_598_1 data_598_13 c_598_1 link' href='<?php echo base_url()."about"; ?>'>About Us</a>
 						<a class='style_598_1 data_598_55 c_598_18 link'   href='<?php echo base_url()."product"; ?>' onclick="product_menu(3)">Product</a>
 						<div class='lay_2494_110   data_3591_924 logo color-primer' itemscope itemtype='http://schema.org/Thing'
-							style="padding-top:20px;padding-bottom:20px;margin-bottom:-45px;border-bottom-left-radius: 70px;border-bottom-right-radius: 70px; padding-left: 5%;padding-right: 5%;margin-left: -5%;margin-right: -5%;">
+							style="padding-top:20px;padding-bottom:20px;margin-bottom:-45px;border-bottom-left-radius: 70px;border-bottom-right-radius: 70px; padding-left: 8%;padding-right: 8%;margin-left: -5%;margin-right: -5%;">
 							<a style="text-align: -webkit-center;" class='data_2494_340 link logo-to-img' href='<?php echo base_url(); ?>'>
 								<img itemprop='image' class='style_2494_109 imag_logo head' src='<?php echo base_url()."assets/img/icon_goocraft.png"?>' alt='Logo' style="width:90px;"/>
 								<img itemprop='image' class='style_2494_109 imag_logo' src='<?php echo base_url()."assets/img/font_goocraft.png"?>' alt='Logo' style="height:22px;"/>
