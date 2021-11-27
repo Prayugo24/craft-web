@@ -1,5 +1,6 @@
 document.querySelector("#nav-toggle").addEventListener("click", function () {
 	this.classList.toggle("active");
+	alert("test");
 });
 //Prepare the necessary Preview Variable
 var preview_delay_1 = 6;

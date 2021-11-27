@@ -15,6 +15,7 @@ function menu_toggle() {
 		alert("ok no");
 	} else {
 		alert("ok");
+		
 		menu_popup.className = menu_popup_ori_class + " opened";
 	}
 }
