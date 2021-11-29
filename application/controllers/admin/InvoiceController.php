@@ -76,7 +76,7 @@ class InvoiceController extends CI_Controller {
 					$config['allowed_types']        = 'gif|jpg|jpeg|png';
 					$config['file_name']            = $file_name;
 					$config['overwrite']            = true;
-						
+						 
 					$this->load->library('upload', $config);
 					$count_item = $post['count_item'];
 					for ($i=0; $i < $count_item; $i++) { 
@@ -134,66 +134,102 @@ class InvoiceController extends CI_Controller {
 			$validation = $this->form_validation;
 			$validation = $validation->set_rules($Invoice->rulesBuyer());
 			if ($validation->run()) {
-				$id_product = $Invoice->updateBuyer($params);
+				$id_product = $Invoice->updateBuyer($params_buyer);
+				//? Ship Information
+				$params_ship['id_buyer'] = $params_buyer['id_buyer'];
+				$params_ship['id_shipment'] = $post['id_shipment'];
+				$params_ship['pre_order'] = $post['pre_order'];
+				$params_ship['date'] = $post['pre_order_date'];
+				$params_ship['lc_or_credit'] = $post['lc_or_credit'];
+				$params_ship['currency'] = $post['currency'];
+				$params_ship['payment_terms'] = $post['payment_terms'];
+				$params_ship['est_ship_date'] = $post['est_ship_date'];
+				$params_ship['mode_of_transport'] = $post['mode_transportation'];
+				$params_ship['num_of_package'] = $post['number_package'];
+				$params_ship['gross_weight'] = $post['gross_weight'];
+				$params_ship['net_weight'] = $post['net_weight'];
+				$params_ship['invoice'] = 'INV'.rand();
+				$params_ship['status'] = 0;
+				$params_ship['carrier'] = '';
+				$params_ship['container_total'] = $post['container_tot'];
+				$params_ship['reason_for_exp'] = $post['reason_export'];
+				$params_ship['port_of_embarkation'] = $post['port_embarkation'];
+				$params_ship['country_of_orgn'] = $post['country_origin'];
+				$params_ship['port_of_discharge'] = $post['port_discharge'];
+				$params_ship['awb_or_bl'] = $post['awb_bl'];
+				$validation = $this->form_validation;
+				$validation = $validation->set_rules($Invoice->rulesShipment());
+				if ($validation->run() && !empty($params_ship['id_buyer'])) {
+					$id_shipment = $Invoice->updateShipment($params_ship);
+					//? Item
+					$file_name =  rand();
+					$config['upload_path']          = FCPATH.'/assets/img/order';
+					$config['allowed_types']        = 'gif|jpg|jpeg|png';
+					$config['file_name']            = $file_name;
+					$config['overwrite']            = true;
+					$count_item = $post['count_item'];
+					$this->load->library('upload', $config);
+					for ($i=0; $i < $count_item; $i++) { 
+						$getOrder = isset($post['id_order_'.$i]) ? $Invoice->getOrderById($post['id_order_'.$i]) :'';
+						
+						if($getOrder){
+							$getOrder = json_encode($getOrder[0]);
+							$getOrder = json_decode($getOrder,true);
+							
+							if (!$this->upload->do_upload('image_product_'.$i)) {
+								$name_image = $getOrder['image'];
+							} else {
+								$path_to_file =FCPATH.'/assets/img/order/';
+								unlink($path_to_file.$name_image['image']);
+								$uploaded_data = $this->upload->data();
+								$name_image = $uploaded_data['file_name'];
+							}
+							$params_order['id_shipment'] = $params_ship['id_shipment'];
+							$params_order['id_buyer'] = $params_buyer['id_buyer'];
+							$params_order['id_order'] = $post['id_order_'.$i];
+							$params_order['name_or_descrip'] = $post['name_product_'.$i];
+							$params_order['image'] = $name_image;
+							$params_order['date'] = $params_ship['date'];
+							$params_order['qty'] = $post['qty_'.$i];
+							$params_order['uom'] = 'Unit'; 
+							$params_order['price_normal'] = $post['price_normal_'.$i];
+							$params_order['price_sell'] = $post['price_sell_'.$i];
+							$params_order['price_total'] = $post['price_sell_'.$i]*$post['qty_'.$i];
+							
+							$save_order = $Invoice->updateOrder($params_order);
+						}else{
+							if (!$this->upload->do_upload('image_product_'.$i)) {
+								$data['error'] = $this->upload->display_errors();
+								$this->session->set_flashdata('delete', 'File gagal disimpan cek kembali form inputan Item !!');
+								redirect('dashboard-invoice');
+							} else {
+								$uploaded_data = $this->upload->data();
+								$params_orders['id_shipment'] = $params_ship['id_shipment'];
+								$params_orders['id_buyer'] = $params_buyer['id_buyer'];
+								$params_orders['name_or_descrip'] = $post['name_product_'.$i];
+								$params_orders['image'] = $uploaded_data['file_name'];
+								$params_orders['date'] = $params_ship['date'];
+								$params_orders['qty'] = $post['qty_'.$i];
+								$params_orders['uom'] = 'Unit'; 
+								$params_orders['price_normal'] = $post['price_normal_'.$i];
+								$params_orders['price_sell'] = $post['price_sell_'.$i];
+								$params_orders['price_total'] = $post['price_sell_'.$i]*$post['qty_'.$i];
+								$save_order = $Invoice->saveOrder($params_orders);
+							}
+						}
+					}
+					$this->session->set_flashdata('success', 'Berhasil diubah');
+					redirect('dashboard-invoice');
+				}else{
+					$this->session->set_flashdata('delete', 'File gagal diubah Id Buyer tidak ditemukan');
+					redirect('dashboard-invoice');
+				}
+			}else{
+				$this->session->set_flashdata('delete', 'File gagal diubah cek kembali form inputan Bill To & Ship To !!');
+				redirect('dashboard-invoice');
 			}
 		}
-		$post = $this->input->post();
 		
-		$file_name =  rand();
-		$config['upload_path']          = FCPATH.'/assets/img/product';
-		$config['allowed_types']        = 'gif|jpg|jpeg|png';
-		$config['file_name']            = $file_name;
-		$config['overwrite']            = true;
-		
-		$this->load->library('upload', $config);
-		$productJoin = $this->InvoiceModels->getProductInnerJoinById($post['id_product']);
-		$productJoin = json_encode($productJoin[0]);
-		$productJoin = json_decode($productJoin,true);
-		if (!$this->upload->do_upload('image_product')) {
-			$name_image = $productJoin['name_image'];
-		}else{
-			$path_to_file =FCPATH.'/assets/img/product/';
-			unlink($path_to_file.$productJoin['name_image']);
-			$uploaded_data = $this->upload->data();
-			$name_image = $uploaded_data['file_name'];
-		}
-		
-		$product = $this->InvoiceModels;
-		$validation = $this->form_validation;
-		$validation = $validation->set_rules($product->rules());
-		if ($validation->run()) {
-			
-			$params = [
-				'id' => $post['id_product'],
-				'id_category' => $post['id_category'],
-				'name_product' => $post['name_product'],
-				'status' => 1,
-				'link' => $post['link'],
-				'id_supplier' => $post['id_supplier'],
-				'description' => $post['description'],
-				'panjang' => $post['panjang'],
-				'lebar' => $post['lebar'],
-				'tinggi' => $post['tinggi'],
-				
-			];
-			$id_product = $product->update($params);
-			
-			
-			$params_image = [
-				'id'=> $productJoin['id_image'],
-				'id_product' => $post['id_product'],
-				'name_image' => $name_image,
-			];
-			
-			$image = $this->imagemodels;
-			$save_image = $image->update($params_image);
-			
-			$this->session->set_flashdata('success', 'Berhasil disimpan');
-			redirect('dashboard-product');
-		}else{
-			$this->session->set_flashdata('delete', $validation);
-			redirect('dashboard-product');
-		} 
 		
 	}
 

@@ -122,9 +122,9 @@
                     }
                 },
                 { "render": function ( data, type, row ) { // Tampilkan kolom aksi
-						var url = "<?php echo base_url().'admin/InvoiceController/edit_product/'; ?>"+row.id_buyer;
+						var url = "<?php echo base_url().'view-proforma-invoice/'; ?>"+row.id_buyer;
                         var html  = ''
-                        html += '<a id="PopoverCustomT-2" href="'+url+'" class="mb-2 mr-2 btn-transition btn btn-outline-success">Preview</a>'
+                        html += '<a target="_blank" id="PopoverCustomT-2" href="'+url+'" class="mb-2 mr-2 btn-transition btn btn-outline-success">Preview</a>'
                         return html
                     }
                 },
@@ -313,7 +313,8 @@
 			$('#ed_name_company').val(shipment["name_company"]);
 			$('#ed_email').val(shipment["email"]);
 			$('#ed_website').val(shipment["website"]);
-			// $('#ed_sea_port').val(shipment[""]);
+			$('#ed_id_buyer').val(shipment["id_buyer"]);
+			$('#ed_id_shipment').val(shipment["id_shipment"]);
 			$('#ed_city').val(shipment["city"]);
 			$('#ed_zip_code').val(shipment["zip_code"]);
 			$('#ed_Address').val(shipment["address"]);
@@ -327,8 +328,9 @@
 			$('#ed_currency').val(shipment["currency"]);
 			$('#ed_payment_terms').val(shipment["payment_terms"]);
 			$('#ed_mode_transportation').val(shipment["mode_of_transport"]);
-			$('#ed_pre_order_date').val(shipment["date"]);
-			$('#ed_est_ship_date').val(shipment["est_ship_date"]);
+			$('#ed_pre_order_date').val(shipment["date"].split(' ')[0]);
+			$('#ed_est_ship_date').val(shipment["est_ship_date"].split(' ')[0]);
+			console.log(shipment["est_ship_date"].split(' ')[0]);
 			$('#ed_number_package').val(shipment["num_of_package"]);
 			$('#ed_gross_weight').val(shipment["gross_weight"]);
 			$('#ed_net_weight').val(shipment["net_weight"]);

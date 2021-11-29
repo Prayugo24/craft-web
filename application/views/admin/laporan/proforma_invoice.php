@@ -1,8 +1,8 @@
 <title>PDF invoice</title>
 <!-- <link rel="stylesheet" type="text/css" href="assets/admin/template_1/assets/css_pdf/shopify-styling.css" media="all"> -->
-<link rel="stylesheet" type="text/css" href="assets/admin/template_1/assets/css_pdf/font-primary-36045.css" media="all">
-<link rel="stylesheet" type="text/css" href="assets/admin/template_1/assets/css_pdf/preview-content.css" media="all">
-<link rel="stylesheet" type="text/css" href="assets/admin/template_1/assets/css_pdf/specific-styling.css" media="all">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/admin/template_1/assets/css_pdf/font-primary-36045.css'; ?>" media="all">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/admin/template_1/assets/css_pdf/preview-content.css'; ?>" media="all">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/admin/template_1/assets/css_pdf/specific-styling.css'; ?>" media="all">
 
 
 </head>
@@ -47,25 +47,25 @@
                             <ul class='order-details'>
                                 <li class='order-details-invoice'>
                                     <span class='order-details-title editable' data-key='invoice_number'>Page :</span>
-                                    <span class='order-details-text'>1 Of 12</span>
+                                    <span class='order-details-text'>1 Of 1</span>
                                 </li>
                                 <img class='barcode-64931 order-number-barcode' src='ddddd'>
                                 <li class='order-details-date'>
                                     <span class='order-details-title editable' data-key='date'>Date :</span>
-                                    <span class='order-details-text'>01-03-2019</span>
+                                    <span class='order-details-text'><?= date("Y-M-d", strtotime($Shipment['date'])) ?></span>
                                 </li>
                                 <li class='order-details-payment'>
-                                    <span class='order-details-title editable' data-key='payment_method'>Date of Expiry : :</span>
-                                    <span class='order-details-text'>Autre</span>
+                                    <span class='order-details-title editable' data-key='payment_method'>Date of Expiry : </span>
+                                    <span class='order-details-text'><?= date("Y-M-d", strtotime($Shipment['date'])) ?></span>
                                 </li>
 
                                 <li class='order-details-shipping'>
                                     <span class='order-details-title editable' data-key='shipping_method'>Invoice #: </span>
-                                    <span class='order-details-text'>[2021/INV/0001]</span>
+                                    <span class='order-details-text'>[<?= $Shipment['invoice'] ?>]</span>
                                 </li>
 								<li class='order-details-shipping'>
                                     <span class='order-details-title editable' data-key='shipping_method'>Customer ID: </span>
-                                    <span class='order-details-text'>CHR-00001</span>
+                                    <span class='order-details-text'><?= 'CHR-000'.$Shipment['id_buyer'] ?></span>
                                 </li>
                             </ul>
                         </div>
@@ -77,6 +77,7 @@
                         </div>
                     </div>
                 </div>
+				
                 <!--  bill to ship to -->
                 <div class="row">
                     <div class='col-xs-6'>
@@ -91,23 +92,20 @@
                         </div>
                     </div>
                 </div>
+				
                 <div class='row'>
                     <div class='col-xs-6'>
+					
                         <ul class='address bil-too'>
-                            <li>[Name]</li>
-                            <li>[Company Name]</li>
-                            <li>[Street Address]</li>
-                            <li>[City, ST ZIP Code]</li>
-                            <li>[Phone]</li>
+                            <li><b><?= $Shipment['name_company'] ?></b></li>
+                            <li><b>EMAIL : <?= $Shipment['email'] ?></b></li>
                         </ul>
                     </div>
                     <div class='col-xs-6'>
                         <ul class='address ship-too'>
-                            <li>[Name]</li>
-                            <li>[Company Name]</li>
-                            <li>[Street Address]</li>
-                            <li>[City, ST ZIP Code]</li>
-                            <li>[Phone]</li>
+							<li><b><?= $Shipment['name_company'] ?></b></li>
+                            <li><b>SEA PORT : <?= $Shipment['port_of_discharge'] ?></b></li>
+                            <li><b>EMAIL : <?= $Shipment['email'] ?></b></li>
                         </ul>
                     </div>
                 </div>
@@ -133,12 +131,12 @@
                     </div>
                     <div class='col-xs-4'>
                         <ul class='shipment-info-input-left'>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
+                            <li><b> <input type="text" size="41" value="<?= $Shipment['invoice'].'-HNCF' ?>"> </b></li>
+                            <li><b> <input type="text" size="41" value="<?= date("Y-M-d", strtotime($Shipment['date'])) ?>"> </b></li>
+                            <li><b> <input type="text" size="41" value="<?= $Shipment['lc_or_credit'] ?>"> </b></li>
+                            <li><b> <input type="text" size="41" value="<?= $Shipment['currency'] ?>"> </b></li>
+                            <li><b> <input type="text" size="41" value="<?= $Shipment['payment_terms'] ?>"> </b></li>
+                            <li><b> <input type="text" size="41" value="<?= date("Y-M", strtotime($Shipment['est_ship_date'])) ?>"> </b></li>
                         </ul>
                     </div>
                     <div class='col-xs-3'>
@@ -148,7 +146,7 @@
                             <li>Number Of Packages :</li>
                             <li>Est. Gross Weight :</li>
                             <li>Est. Net Weight :</li>
-                            <li>Carrier :</li>
+                            <li>Container Total :</li>
                         </ul>
                     </div>
                     <div class='col-xs-3'>
@@ -158,12 +156,12 @@
 							</tr>
 						</table> -->
                         <ul class='shipment-info-input-right'>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
+							<li><b> <input type="text" size="32" value="<?= $Shipment['mode_of_transport'] ?>"> </b></li>
+                            <li><b> <input type="text" size="32" value="-"></b></li>
+                            <li><b> <input type="text" size="32" value="<?= $Shipment['num_of_package'] ?>"> </b></li>
+                            <li><b> <input type="text" size="32" value="<?= $Shipment['gross_weight'] ?>"> </b></li>
+                            <li><b> <input type="text" size="32" value="<?= $Shipment['net_weight'] ?>"> </b></li>
+                            <li><b> <input type="text" size="32" value="<?= $Shipment['container_total'] ?>"> </b></li>
                         </ul>
                     </div>
                 </div>
@@ -184,7 +182,7 @@
                     </div>
                     <div class="col-xs-10">
                         <ul class='addtional-info-input-left'>
-                            <li><input type="text"></li>
+                            <li><b> <input type="text" size="103" value="<?= $Shipment['reason_for_exp'] ?>"> </b></li>
                         </ul>
                     </div>
                 </div>
@@ -198,8 +196,8 @@
                     </div>
                     <div class='col-xs-3'>
                         <ul class='addtional-info-input-left_2'>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
+							<li><b> <input type="text" size="41" value="<?= $Shipment['port_of_embarkation'] ?>"> </b></li>
+                            <li><b> <input type="text" size="41" value="<?= $Shipment['country_of_orgn'] ?>"> </b></li>
                             
                         </ul>
                     </div>
@@ -212,8 +210,8 @@
                     </div>
                     <div class='col-xs-4'>
                         <ul class='addtional-info-input-right'>
-                            <li><input type="text"></li>
-                            <li><input type="text"></li>
+							<li><b> <input type="text" size="40" value="<?= $Shipment['port_of_discharge'] ?>"> </b></li>
+                            <li><b> <input type="text" size="40" value="<?= $Shipment['awb_or_bl'] ?>"> </b></li>
                             
                         </ul>
                     </div>
@@ -227,33 +225,38 @@
                                     <th class='order-table-title editable' data-key='item'>Item/Part #</th>
 									<th class='order-table-title editable' data-key='item'>UOM</th>
                                     <th class='order-table-title text-center editable' data-key='qty'>Description</th>
-									<th class='order-table-qty text-center editable' data-key='qty'>Unit Price</th>
 									<th class='order-table-qty text-center editable' data-key='qty'>Qty</th>
+									<th class='order-table-qty text-center editable' data-key='qty'>Unit Price</th>
 									<th class='order-table-qty text-center editable' data-key='qty'>Line Total</th>
                                     
                                 </tr>
                             </thead>
                             <tbody>
-								<?php for($i=1;$i<=1;$i++){ ?>
+								<?php 
+								$i = 1;
+                                $subtotal = 0;
+								foreach($ItemOrder as $key => $value) {?>
                                 <tr>
-                                    <td class='-image-wrapper'><p style='font-weight: bold;'> <b>#<?= $i ?></b></p>
+                                    <td class='-image-wrapper'><p style='font-weight: bold;'> <b>#<?= $i++ ?></b></p>
                                     </td>
 									<td class='-image-wrapper'>
-										<p style='font-weight: bold;'> (Cube) </p>
+										<p style='font-weight: bold;'> <?= $value->uom ?></p>
                                     </td>
-                                    <td class='line-item-description'>
+                                    <td class='line-item-description text-center' >
                                         <p style='font-weight: bold;'>
-                                            PRODUCT DESC - </p>
-											<img class='-image' src='https://cdn.shopify.com/s/files/1/2617/6368/s/1_medium.jpg?v=1547939736'>
+										<?= $value->name_or_descrip ?></p>
+											<img class='-image' src='<?php echo base_url().'assets/img/order/'.$value->image ?>' >
                                     </td>
-                                    <td class='text-center line-item-qty'>× 1</td>
+                                    <td class='text-center line-item-qty'><?= 'x'.$value->qty ?></td>
                                     <td class='text-right no-wrap line-item-price'>
-                                        <p>29,90</p>
+                                        <p><?= '$'.$value->price_sell ?></p>
                                     </td>
                                     
-									<td class='text-right no-wrap line-item-line-price'>29,90</td>
+									<td class='text-right no-wrap line-item-line-price'><?= '$'.$value->price_total ?></td>
                                 </tr>
-								<?php } ?>
+								<?php 
+                                    $subtotal += $value->price_total;   
+                                } ?>
                             </tbody>
                         </table>
 
@@ -318,15 +321,15 @@
 
                                 <tr>
                                     <td class='pricing-table-title editable' data-key='subtotal'>Subtotal</td>
-                                    <td class='pricing-table-text'>54,80</td>
+                                    <td class='pricing-table-text'><?= '$'.$subtotal ?></td>
                                 </tr>
                                 <tr>
                                     <td class='pricing-table-title editable' data-key='shipping_handling'>S & H Insurance</td>
-                                    <td class='pricing-table-text'>10,00</td>
+                                    <td class='pricing-table-text'>-</td>
                                 </tr>
                                 <tr class='pricing-table-total-row'>
                                     <td class='pricing-table-title editable' data-key='total'>Total</td>
-                                    <td class='pricing-table-text'>64,80</td>
+                                    <td class='pricing-table-text'><?= '$'.$subtotal ?></td>
                                 </tr>
 
 

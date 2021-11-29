@@ -72,4 +72,5 @@ $route['dashboard-invoice'] = 'admin/InvoiceController';
 $route['dashboard-category'] = 'admin/CategoryController';
 $route['dashboard-supplier'] = 'admin/SupplierController';
 $route['dashboard-profile'] = 'admin/CompanyProfileController';
+$route['view-proforma-invoice/(:any)'] = 'admin/InvoiceViewController/proforma_invoice/$1';
 $route['auth/logout'] = 'admin/AuthController/logout';

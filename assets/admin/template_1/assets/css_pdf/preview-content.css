@@ -371,12 +371,12 @@ print {
     margin-top: -14%;
 	margin-left: -7%;
 }
-.printer-preview-content .t36045 .shipment-info-input-right input {
+/* .printer-preview-content .t36045 .shipment-info-input-right input {
     padding-right: 27%;
-}
-.printer-preview-content .t36045 .shipment-info-input-left input {
+} */
+/* .printer-preview-content .t36045 .shipment-info-input-left input {
     padding-right: 41%;
-}
+} */
 .printer-preview-content .t36045 .shipment-info-text-right li{
     padding-bottom: 3%;
 	margin-left: 8%;
@@ -404,18 +404,22 @@ print {
     margin-top: -19%;
     margin-left: -33%;
 }
-.printer-preview-content .t36045 .addtional-info-input-left_2 input {
+/* .printer-preview-content .t36045 .addtional-info-input-left_2 input {
     padding-right: 40%;
-}
+} */
 .printer-preview-content .t36045 .addtional-info-input-right {
     margin-top: -14%;
     
 }
-.printer-preview-content .t36045 .addtional-info-input-right input {
+/* .printer-preview-content .t36045 .addtional-info-input-right input {
     padding-right: 42%;
-}
-.printer-preview-content .t36045 .addtional-info-input-left input {
+} */
+/* .printer-preview-content .t36045 .addtional-info-input-left input {
     padding-right: 77%;
+} */
+input[type="text"]
+{
+    font-size:10px !important;
 }
 .addtional-information .left{
     background-color: #aed8fd;

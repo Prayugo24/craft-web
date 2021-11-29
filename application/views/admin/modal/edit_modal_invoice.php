@@ -137,7 +137,7 @@
 							<div class="position-relative form-group">
 								<label for="ed_est_ship_date" class="">Est. Ship Date</label>
 								<div class='input-group date' id='date_picker_invoice'>
-									<input name="est_ship_date" id="ed_est_ship_date" type='date' class="form-control" placeholder="September, 2021"/>
+									<input name="est_ship_date"  id="ed_est_ship_date" type='date' class="form-control" placeholder="September, 2021"/>
 									<span class="input-group-addon">
 									<span class="glyphicon glyphicon-calendar"></span>
 									</span>

@@ -141,7 +141,7 @@ class InvoiceModels extends CI_Model {
 
 	public function updateShipment($params){
 		return $this->db->update($this->_table_ship, $params, array('id_shipment' => $params['id_shipment']));
-	}
+	} 
 
 	public function updateBuyer($params){
 		return $this->db->update($this->_table_buyer, $params, array('id_buyer' => $params['id_buyer']));
@@ -162,7 +162,7 @@ class InvoiceModels extends CI_Model {
 
 	public function getInvoiceInnerJoinOrderbyBuyer($id_buyer){
 		$this->db->select('buyer.id_buyer,buyer.name, buyer.name_company, buyer.email
-			, buyer.website, buyer.city, buyer.zip_code, buyer.address,
+			, buyer.website, buyer.city, buyer.zip_code, buyer.address,shipment_information.invoice,
 			shipment_information.id_shipment,shipment_information.pre_order,shipment_information.date, shipment_information.lc_or_credit,
 			shipment_information.currency,shipment_information.payment_terms,shipment_information.est_ship_date,
 			shipment_information.mode_of_transport,shipment_information.num_of_package,shipment_information.gross_weight,
@@ -181,6 +181,13 @@ class InvoiceModels extends CI_Model {
 		$this->db->select('*')
 		->from('order')
 		->where('id_buyer',$id_buyer);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	public function getOrderById($id_order){
+		$this->db->select('*')
+		->from('order')
+		->where('id_order',$id_order);
 		$query = $this->db->get();
 		return $query->result();
 	}
