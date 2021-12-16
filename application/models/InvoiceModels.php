@@ -162,7 +162,7 @@ class InvoiceModels extends CI_Model {
 
 	public function getInvoiceInnerJoinOrderbyBuyer($id_buyer){
 		$this->db->select('buyer.id_buyer,buyer.name, buyer.name_company, buyer.email
-			, buyer.website, buyer.city, buyer.zip_code, buyer.address,shipment_information.invoice,
+			, buyer.website, buyer.city, buyer.zip_code, buyer.address,shipment_information.invoice,shipment_information.image_barcode,
 			shipment_information.id_shipment,shipment_information.pre_order,shipment_information.date, shipment_information.lc_or_credit,
 			shipment_information.currency,shipment_information.payment_terms,shipment_information.est_ship_date,
 			shipment_information.mode_of_transport,shipment_information.num_of_package,shipment_information.gross_weight,

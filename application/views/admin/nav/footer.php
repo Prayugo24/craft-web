@@ -124,15 +124,15 @@
                 { "render": function ( data, type, row ) { // Tampilkan kolom aksi
 						var url = "<?php echo base_url().'view-proforma-invoice/'; ?>"+row.id_buyer;
                         var html  = ''
-                        html += '<a target="_blank" id="PopoverCustomT-2" href="'+url+'" class="mb-2 mr-2 btn-transition btn btn-outline-success">Preview</a>'
+                        html += '<a target="_blank"  href="'+url+'" class="mb-2 mr-2 btn-transition btn btn-outline-success">Preview</a>'
                         return html
                     }
                 },
 				{ "render": function ( data, type, row ) { // Tampilkan kolom aksi
-						var url = "<?php echo base_url().'admin/InvoiceController/edit_product/'; ?>"+row.id_buyer;
+					var url = "<?php echo base_url().'view-comercial-invoice/'; ?>"+row.id_buyer;
 						
                         var html  = ''
-                        html += '<a id="PopoverCustomT-2" href="'+url+'" class="mb-2 mr-2 btn-transition btn btn-outline-success">Preview</a>'
+                        html += '<a target="_blank"  href="'+url+'" class="mb-2 mr-2 btn-transition btn btn-outline-success">Preview</a>'
                         return html
                     }
                 },

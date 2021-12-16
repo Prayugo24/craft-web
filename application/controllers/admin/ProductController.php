@@ -10,6 +10,7 @@ class ProductController extends CI_Controller {
 		$this->load->model('CategoryModels');
 		$this->load->model('SupplierModels');
 		$this->load->model('ImageModels');
+		$this->load->library('zend');
 		$this->load->library('form_validation');
 		$this->load->helper('url');
 		$this->load->model('AuthModels');

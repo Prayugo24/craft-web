@@ -189,12 +189,12 @@
 	<div class='lay_3591_321   col-md-3  col-sm-4 col-xs-6'>
 		<div class='lay_3591_322   data_3591_909'>
 			<a class='data_3591_911 c_3591_29 link'
-				href='<?php echo base_url()."product"; ?>'>
+				href='#'>
 				<img class='style_2494_97' src='<?php echo base_url()."assets/img/category/".$value->image_category;?>'  alt='Storage Boxes' /> 
 			</a>
 		</div>
 		<a class='style_2494_51 data_3591_910 c_3591_29 link link-product'
-			href='<?php echo base_url()."product"; ?>'><?= $value->name_category; ?></a>
+			href='#'><?= $value->name_category; ?></a>
 		<div class='style_2494_51 data_3591_912 text text-normal-center'></div>
 	</div>
 	<?php endforeach; ?>

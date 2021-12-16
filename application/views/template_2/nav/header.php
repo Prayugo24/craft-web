@@ -81,7 +81,8 @@
 					<nav class='lay_598_6   data_2494_1090 col-md-12 row'>
 						<a class='style_598_1 data_598_12 link' href='<?php echo base_url(); ?>'>Home</a>
 						<a class='style_598_1 data_598_13 c_598_1 link' href='<?php echo base_url()."about"; ?>'>About Us</a>
-						<a class='style_598_1 data_598_55 c_598_18 link'   href='<?php echo base_url()."product"; ?>' onclick="product_menu(3)">Product</a>
+						<a class='style_598_1 data_598_55 c_598_18 link' href='<?php echo base_url()."faq"; ?>'>FAQ</a>
+						<!-- <a class='style_598_1 data_598_55 c_598_18 link'   href='<?php echo base_url()."faq"; ?>' onclick="product_menu(3)">Product</a> -->
 						<div class='lay_2494_110   data_3591_924 logo color-primer' itemscope itemtype='http://schema.org/Thing'
 							style="padding-top:20px;padding-bottom:20px;margin-bottom:-45px;border-bottom-left-radius: 70px;border-bottom-right-radius: 70px; padding-left: 8%;padding-right: 8%;margin-left: -5%;margin-right: -5%;">
 							<a style="text-align: -webkit-center;" class='data_2494_340 link logo-to-img' href='<?php echo base_url(); ?>'>
@@ -114,7 +115,7 @@
 							<div class='lay_598_66   data_2494_520'>
 								<a class='style_2494b_84 data_598_147 link' href='<?php echo base_url(); ?>'>Home</a>
 								<a class='style_2494b_84 data_598_148 c_598_1 link' href='<?php echo base_url()."about"; ?>'>About Us</a>
-								<a class='style_2494b_84 data_598_149 c_3591_28 link' href='<?php echo base_url()."product"; ?>' >Product</a>
+								<!-- <a class='style_2494b_84 data_598_149 c_3591_28 link' href='<?php echo base_url()."product"; ?>' >Product</a> -->
 								<a class='style_2494b_84 data_598_152 c_598_3 link' href='<?php echo base_url()."craftsmen"; ?>'>Craftsmen Activity</a>
 								<a class='style_2494b_84 data_598_152 c_598_3 link' href='<?php echo base_url()."faq"; ?>'>FAQ</a>
 								<a class='style_2494b_84 data_598_152 c_598_3 link' href='<?php echo base_url()."terms-and-conditions"; ?>'>Term &amp; Conditions</a>

@@ -49,7 +49,7 @@
                                     <span class='order-details-title editable' data-key='invoice_number'>Page :</span>
                                     <span class='order-details-text'>1 Of 1</span>
                                 </li>
-                                <img class='barcode-64931 order-number-barcode' src='ddddd'>
+                                <img style="height: 38px;width: 33%;padding: 3px;" class='' src='<?php echo base_url()."/assets/img/barcode/".$Shipment['image_barcode'] ?>'>
                                 <li class='order-details-date'>
                                     <span class='order-details-title editable' data-key='date'>Date :</span>
                                     <span class='order-details-text'><?= date("Y-M-d", strtotime($Shipment['date'])) ?></span>
@@ -323,13 +323,18 @@
                                     <td class='pricing-table-title editable' data-key='subtotal'>Subtotal</td>
                                     <td class='pricing-table-text'><?= '$'.$subtotal ?></td>
                                 </tr>
+								<tr>
+                                    <td class='pricing-table-title editable' data-key='subtotal'>Payment Deposit 50%</td>
+									<?php $paymrnt_deposit= $subtotal/2; ?>
+                                    <td class='pricing-table-text'><?= '$'.($paymrnt_deposit) ?></td>
+                                </tr>
                                 <tr>
                                     <td class='pricing-table-title editable' data-key='shipping_handling'>S & H Insurance</td>
                                     <td class='pricing-table-text'>-</td>
                                 </tr>
                                 <tr class='pricing-table-total-row'>
                                     <td class='pricing-table-title editable' data-key='total'>Total</td>
-                                    <td class='pricing-table-text'><?= '$'.$subtotal ?></td>
+                                    <td class='pricing-table-text'><?= '$'.($subtotal-$paymrnt_deposit) ?></td>
                                 </tr>
 
 
@@ -342,10 +347,12 @@
 
 				<div class="row">
 					<div class="col-xs-4">
-						<b>Signature</b>
+						<b>&nbsp;&nbsp;&nbsp;&nbsp;Signature</b>
+						<img style="height: 82px;display: flex;margin-top: -15px;" src="<?php echo base_url().'assets/admin/template_1/assets/images/tanda_tangan.png'; ?>" alt="">
+						<b>(CEO) Prayugo Dwi </b></p>
 					</div>
 					<div class="col-xs-4">
-						<b>Date</b>
+						<b>Date : <?php echo date("Y-M-d") ?></b>
 					</div>
 				</div>
                 <div class='row'>

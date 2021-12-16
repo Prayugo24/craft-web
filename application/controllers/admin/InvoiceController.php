@@ -8,6 +8,7 @@ class InvoiceController extends CI_Controller {
 		parent::__construct();
 		$this->load->model('InvoiceModels');
 		$this->load->library('form_validation');
+		$this->load->library('zend');
 		$this->load->helper('url');
 		$this->load->model('AuthModels');
 		if(!$this->AuthModels->current_user()){
@@ -57,6 +58,7 @@ class InvoiceController extends CI_Controller {
 				$params_ship['gross_weight'] = $post['gross_weight'];
 				$params_ship['net_weight'] = $post['net_weight'];
 				$params_ship['invoice'] = 'INV'.rand();
+				$params_ship['image_barcode'] = $this->create_barcode($params_ship['invoice']);
 				$params_ship['status'] = 0;
 				$params_ship['carrier'] = '';
 				$params_ship['container_total'] = $post['container_tot'];
@@ -115,6 +117,18 @@ class InvoiceController extends CI_Controller {
 		}
 	}
 
+	function create_barcode($kode){
+		$this->zend->load('Zend/Barcode');
+		// $imageResource=Zend_Barcode::factory('code128', 'image', $barcodeOptions, $rendererOptions)->render();
+		$imageResource = Zend_Barcode::draw('code128', 'image', array('text' => $kode), array());
+		$path_to_file =FCPATH.'/assets/img/barcode/';
+		$file_name = $kode.'.png';
+		$store_image = imagepng($imageResource,$path_to_file.$file_name);
+		return $file_name;
+
+
+	 }
+
 	public function edit_invoice()
 	{
 
@@ -149,6 +163,7 @@ class InvoiceController extends CI_Controller {
 				$params_ship['gross_weight'] = $post['gross_weight'];
 				$params_ship['net_weight'] = $post['net_weight'];
 				$params_ship['invoice'] = 'INV'.rand();
+				$params_ship['image_barcode'] = $this->create_barcode($params_ship['invoice']);
 				$params_ship['status'] = 0;
 				$params_ship['carrier'] = '';
 				$params_ship['container_total'] = $post['container_tot'];
