@@ -14,7 +14,7 @@
 	<form class='lay_598_49 style_598_11   data_598_93 col-md-8 col-xs-12' method='post'>
 		<div class='style_2494_51 data_2494_1044 text title-transition'>Leave us your info</div>
 		<div class='style_2494_51 data_2494_1046 text text-normal'><b>OFFICE</b><br>Kab.Pacitan ,Kec. Punung, 63553 Jawa Timur - Indonesia
-			<br>Jawa Timur, Indonesia<br>Call our phone number +6289-5161-42887 or send us email to goocraftindonesia@gmail.com
+			<br>Jawa Timur, Indonesia<br>Call our phone number +6289-5161-42887 or send us email to info@goocraft.com
 		</div>
 		<div class='style_2494_51 data_2494_1044 text title-transition'>Opening Hours</div>
 		<div class='style_2494_51 data_2494_1046 text text-normal'>

@@ -36,7 +36,7 @@
 			<div class='lay_2494b_357   data_2494b_1102 col-md-3 col-xs-12' itemscope itemtype='http://schema.org/Thing'>
 				<div class='data_2494b_1116 text col-md-12 col-xs-12 footer-title'>Contact Us</div>
 				<a class='style_3591_83 data_3591_929 link footer-link col xs-12' href='tel:+6289-5161-42887;'>+6289-5161-42887</a>
-				<a class='style_3591_83 data_3591_931 link footer-link col xs-12' href='mailto:goocraftindonesia@gmail.com;'>goocraftindonesia@gmail.com</a>
+				<a class='style_3591_83 data_3591_931 link footer-link col xs-12' href='mailto:info@goocraft.com;'>info@goocraft.com</a>
 				<!-- <a class='style_3591_83 data_3591_956 link footer-link col xs-12' href='https://www.instagram.com/GoocraftIndonesia/' target='_blank'>GoocraftIndonesia</a> -->
 				<meta itemprop='name' content='Contact Information' />
 			</div>

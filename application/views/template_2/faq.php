@@ -43,7 +43,7 @@
 		<div class='data_2494_409 text sub-title-left col-md-12 col-xs-12'>Q : How to order your
 			handicrafts?</div>
 		<div class='data_2494_410 text text-normal col-md-12 col-xs-12'>A : You can contact us at our
-			Whatsapp number: +6289516142887 or by email at goocraftindonesia@gmail.com. You can find them on
+			Whatsapp number: +6289516142887 or by email at info@goocraft.com. You can find them on
 			this page. </div>
 	</div>
 	<div class='lay_2494_130   col-md-12 col-xs-10'>
